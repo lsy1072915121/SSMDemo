@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
+
+    <!--注入负责加载配置文件的对象-->
+    <!--配置MySql链接信息属性文件-->
+    <bean id="propertyPlaceholderConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound">
+            <value>false</value>
+        </property>
+        <property name="locations">
+            <list>
+                <!--加载web属性配置文件-->
+                <value>classpath:/application-web.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>-->
+
+    <import resource="classpath:application-context-mybatis.xml"/>
+    <!--<import resource="classpath:application-context-redis.xml"/>-->
+    <!--<import resource="classpath*:/spring-transaction.xml"/>-->
+    <!--<import resource="classpath*:/application-context-sms.xml"/>-->
+    <!--<import resource="classpath*:/application-context-quartz.xml"/>-->
+</beans>
+    
